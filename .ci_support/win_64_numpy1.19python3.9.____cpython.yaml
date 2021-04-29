@@ -3,13 +3,13 @@ CMAKE_GENERATOR:
 bzip2:
 - '1'
 c_compiler:
-- vs2017
+- vs2019
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 cxx_compiler:
-- vs2017
+- vs2019
 hdf5:
 - 1.10.6
 numpy:
