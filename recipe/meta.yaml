@@ -9,7 +9,7 @@ source:
     sha256: 4a70eb106a926271cf86cae3e568c71b26ca40ecdfbfc337110f485410aa2876
 
 build:
-  number: 3
+  number: 4
 
 requirements:
   build:
@@ -29,7 +29,7 @@ requirements:
     # macos needs boost as rt dependency because of boost filesystem
     - boost-cpp  # [osx]
     # build dependencies needed for z5
-    - nlohmann_json
+    - nlohmann_json >=3.10,<3.10.3
     - blosc
     - bzip2
     - zlib
