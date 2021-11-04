@@ -22,9 +22,13 @@ cmake .. \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
-        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
-        -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
+# FIXME issues with mac build 
+#         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
+#         -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
+#         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS="-std=c++17" \
+        -DCMAKE_CXX_FLAGS_RELEASE="-std=c++17 -O3 -DNDEBUG" \
+        -DCMAKE_CXX_FLAGS_DEBUG="-std=c++17" \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DBUILD_NIFTY_PYTHON=ON \
