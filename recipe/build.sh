@@ -10,6 +10,9 @@ PY_VER=$(python -c "import sys; print('{}.{}'.format(*sys.version_info[:2]))")
 PY_ABIFLAGS=$(python -c "import sys; print('' if sys.version_info.major == 2 else sys.abiflags)")
 PY_ABI=${PY_VER}${PY_ABIFLAGS}
 
+# FIXME issues with mac build 
+CXXFLAGS="-std=c++17"
+
 ##
 ## Configure
 ##
@@ -22,13 +25,9 @@ cmake .. \
 \
         -DCMAKE_SHARED_LINKER_FLAGS="${LDFLAGS}" \
         -DCMAKE_EXE_LINKER_FLAGS="${LDFLAGS}" \
-# FIXME issues with mac build 
-#         -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
-#         -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
-#         -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
-        -DCMAKE_CXX_FLAGS="-std=c++17" \
-        -DCMAKE_CXX_FLAGS_RELEASE="-std=c++17 -O3 -DNDEBUG" \
-        -DCMAKE_CXX_FLAGS_DEBUG="-std=c++17" \
+        -DCMAKE_CXX_FLAGS="${CXXFLAGS}" \
+        -DCMAKE_CXX_FLAGS_RELEASE="${CXXFLAGS} -O3 -DNDEBUG" \
+        -DCMAKE_CXX_FLAGS_DEBUG="${CXXFLAGS}" \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DBUILD_NIFTY_PYTHON=ON \
