@@ -23,13 +23,13 @@ requirements:
     - numpy
     - xtensor >=0.21,<0.22
     - xtensor-python >=0.24,<0.25
-    - vigra 1.11.1=*_1026
+    # TODO can we pin vigra?
+    # - vigra 1.11.1=*_1026
+    - vigra
     - hdf5
     - z5py >=2.0.8
-    # macos needs boost as rt dependency because of boost filesystem
-    - boost-cpp  # [osx]
     # build dependencies needed for z5
-    - nlohmann_json >=3.10,<3.10.3
+    - nlohmann_json
     - blosc
     - bzip2
     - zlib
@@ -37,7 +37,6 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - scikit-image
-    - boost-cpp  # [osx]
 
 test:
   imports:

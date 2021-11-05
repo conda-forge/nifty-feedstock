@@ -10,8 +10,9 @@ PY_VER=$(python -c "import sys; print('{}.{}'.format(*sys.version_info[:2]))")
 PY_ABIFLAGS=$(python -c "import sys; print('' if sys.version_info.major == 2 else sys.abiflags)")
 PY_ABI=${PY_VER}${PY_ABIFLAGS}
 
-# FIXME issues with mac build 
-CXXFLAGS="-std=c++17"
+if [[ "${target_platform}" == "osx-64" ]]; then
+    export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
+fi
 
 ##
 ## Configure
