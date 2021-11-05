@@ -23,7 +23,7 @@ requirements:
     - numpy
     - xtensor >=0.21,<0.22
     - xtensor-python >=0.24,<0.25
-    - vigra
+    - vigra 1.11.1=*_1026
     - hdf5
     - z5py >=2.0.8
     # macos needs boost as rt dependency because of boost filesystem
