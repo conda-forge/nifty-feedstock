@@ -1,15 +1,15 @@
-{% set version = "1.0.8" %}
+{% set version = "1.1.0" %}
 
 package:
   name: nifty
   version: {{ version }}
 
 source:
-    url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
-    sha256: 4a70eb106a926271cf86cae3e568c71b26ca40ecdfbfc337110f485410aa2876
+  url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
+  sha256: ff61ef2394c739bf3672ae313f11dc43117671ded3b7924d1c94fc407ccd42ae
 
 build:
-  number: 4
+  number: 0
 
 requirements:
   build:
@@ -23,13 +23,13 @@ requirements:
     - numpy
     - xtensor >=0.21,<0.22
     - xtensor-python >=0.24,<0.25
-    - vigra
-    - hdf5
-    - z5py >=2.0.8
-    # macos needs boost as rt dependency because of boost filesystem
-    - boost-cpp  # [osx]
+    - vigra 1.11.1=*_1026
+    # vigra should pull in hdf5 dependency
+    # - vigra
+    # - hdf5
+    - z5py >=2.0.11
     # build dependencies needed for z5
-    - nlohmann_json >=3.10,<3.10.3
+    - nlohmann_json
     - blosc
     - bzip2
     - zlib
@@ -37,7 +37,6 @@ requirements:
     - python
     - {{ pin_compatible('numpy') }}
     - scikit-image
-    - boost-cpp  # [osx]
 
 test:
   imports:
