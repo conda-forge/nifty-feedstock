@@ -30,7 +30,7 @@ cmake .. \
 \
         -DBOOST_ROOT=${PREFIX} \
         -DBUILD_NIFTY_PYTHON=ON \
-        -DWITH_HDF5=ON \
+        -DWITH_HDF5=OFF \
         -DWITH_Z5=ON \
         -DWITH_BLOSC=ON \
         -DWITH_ZLIB=ON \
