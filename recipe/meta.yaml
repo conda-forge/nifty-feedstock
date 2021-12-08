@@ -1,4 +1,4 @@
-{% set version = "1.1.0" %}
+{% set version = "1.2.0" %}
 
 package:
   name: nifty
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
-  sha256: ff61ef2394c739bf3672ae313f11dc43117671ded3b7924d1c94fc407ccd42ae
+  sha256: 79f2f61caf1c5e5a2e626527fbaa9fe65f66bee9ae7deeef5c04d13336c45a0b
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
