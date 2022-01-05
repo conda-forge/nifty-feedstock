@@ -17,12 +17,12 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja  # [win]
-    - make
+    - make  # [not win]
   host:
     - python
     - numpy
-    - xtensor >=0.21,<0.22
-    - xtensor-python >=0.24,<0.25
+    - xtensor >=0.24,<0.25
+    - xtensor-python >=0.26,<0.27
     - vigra 1.11.1=*_1026
     - z5py >=2.0.11
     # build dependencies needed for z5
