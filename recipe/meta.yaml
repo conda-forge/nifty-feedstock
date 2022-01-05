@@ -1,4 +1,4 @@
-{% set version = "1.1.0" %}
+{% set version = "1.2.1" %}
 
 package:
   name: nifty
@@ -6,10 +6,10 @@ package:
 
 source:
   url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
-  sha256: ff61ef2394c739bf3672ae313f11dc43117671ded3b7924d1c94fc407ccd42ae
+  sha256: a5fd611463336ba18be828da3154da8828b6486603e2a04f14a4520cb357661a
 
 build:
-  number: 1
+  number: 0
 
 requirements:
   build:
@@ -17,12 +17,12 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - ninja  # [win]
-    - make
+    - make  # [not win]
   host:
     - python
     - numpy
-    - xtensor >=0.21,<0.22
-    - xtensor-python >=0.24,<0.25
+    - xtensor >=0.24,<0.25
+    - xtensor-python >=0.26,<0.27
     - vigra 1.11.1=*_1026
     - z5py >=2.0.11
     # build dependencies needed for z5
