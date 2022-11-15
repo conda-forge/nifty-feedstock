@@ -13,6 +13,9 @@ build:
 
 requirements:
   build:
+    - python                                 # [build_platform != target_platform]
+    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+    - numpy                                  # [build_platform != target_platform]
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
@@ -23,7 +26,7 @@ requirements:
     - numpy
     - xtensor >=0.24,<0.25
     - xtensor-python >=0.26,<0.27
-    - vigra 1.11.1=*_1028
+    - vigra 1.11.1
     - z5py >=2.0.11
     # build dependencies needed for z5
     - nlohmann_json
