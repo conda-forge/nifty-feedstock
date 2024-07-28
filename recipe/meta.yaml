@@ -9,7 +9,7 @@ source:
   sha256: a5fd611463336ba18be828da3154da8828b6486603e2a04f14a4520cb357661a
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -18,6 +18,7 @@ requirements:
     - numpy                                  # [build_platform != target_platform]
     - cmake
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - ninja  # [win]
     - make  # [not win]
