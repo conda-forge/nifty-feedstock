@@ -2,6 +2,8 @@ bzip2:
 - '1'
 c_compiler:
 - vs2019
+c_stdlib:
+- vs
 channel_sources:
 - conda-forge
 channel_targets:
@@ -9,7 +11,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 numpy:
-- '1.21'
+- '1.22'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -22,4 +24,4 @@ zip_keys:
 - - python
   - numpy
 zlib:
-- '1.2'
+- '1'
