@@ -10,7 +10,6 @@ source:
   patches:
     # https://github.com/DerThorsten/nifty/pull/146
     - 146_improve_find_python.patch
-    - 0001-Update-find-vigra.patch
 
 build:
   number: 5
