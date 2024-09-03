@@ -20,6 +20,8 @@ cxx_compiler:
 - clangxx
 cxx_compiler_version:
 - '17'
+libboost_devel:
+- '1.86'
 libvigra:
 - '1.12'
 macos_machine:
