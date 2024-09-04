@@ -7,9 +7,12 @@ package:
 source:
   url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
   sha256: a5fd611463336ba18be828da3154da8828b6486603e2a04f14a4520cb357661a
+  patches:
+    # https://github.com/DerThorsten/nifty/pull/146
+    - 146_improve_find_python.patch
 
 build:
-  number: 4
+  number: 5
 
 requirements:
   build:
@@ -19,6 +22,7 @@ requirements:
     - cmake
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib('c') }}
     - ninja  # [win]
     - make  # [not win]
   host:
@@ -26,7 +30,10 @@ requirements:
     - numpy
     - xtensor >=0.24,<0.25
     - xtensor-python >=0.26,<0.27
-    - vigra 1.11.1
+    - libboost-devel
+    - libvigra
+    # Vigra Numpy is used at link time too
+    - vigra
     - z5py >=2.0.11
     # build dependencies needed for z5
     - nlohmann_json
@@ -35,8 +42,9 @@ requirements:
     - zlib
   run:
     - python
-    - {{ pin_compatible('numpy') }}
+    - numpy >=1.22
     - scikit-image
+    - vigra
 
 test:
   imports:
