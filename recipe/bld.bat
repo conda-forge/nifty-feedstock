@@ -9,6 +9,7 @@ cmake .. %CMAKE_ARGS% ^
          -DWITH_Z5=ON ^
          -DWITH_ZLIB=ON ^
          -DWITH_BLOSC=ON ^
+         -DCMAKE_BUILD_TYPE=Release ^
          -DPython_EXECUTABLE="%PYTHON%"
 
 cmake --build . --target install
