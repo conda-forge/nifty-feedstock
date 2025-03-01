@@ -1,4 +1,4 @@
-{% set version = "1.2.1" %}
+{% set version = "1.2.2" %}
 
 package:
   name: nifty
@@ -6,13 +6,10 @@ package:
 
 source:
   url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
-  sha256: a5fd611463336ba18be828da3154da8828b6486603e2a04f14a4520cb357661a
-  patches:
-    # https://github.com/DerThorsten/nifty/pull/146
-    - 146_improve_find_python.patch
+  sha256: 43e6ecfd72076acd08a4049f3fc4698c5e39715caec12f70d47c303c519e1a2d
 
 build:
-  number: 6
+  number: 0
 
 requirements:
   build:
