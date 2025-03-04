@@ -3,6 +3,7 @@ index 440599a8..5ee6757a 100644
 --- CMakeLists.txt
 +++ CMakeLists.txt
 @@ -53,6 +53,8 @@ if(MSVC)
++    cmake_policy(SET CMP0091 NEW)
      # Disable autolinking on MSVC.
      add_definitions(-DBOOST_ALL_NO_LIB)
      add_definitions(-DNOMINMAX)
