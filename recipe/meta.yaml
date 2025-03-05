@@ -11,7 +11,7 @@ source:
       ms-release-build.patch
 
 build:
-  number: 2
+  number: 3
 
 requirements:
   build:
@@ -27,8 +27,8 @@ requirements:
   host:
     - python
     - numpy
-    - xtensor >=0.24,<0.25
-    - xtensor-python >=0.26,<0.27
+    - xtensor >=0.25,<0.26
+    - xtensor-python >=0.27,<0.28
     - libboost-devel
     - libvigra
     # Vigra Numpy is used at link time too
