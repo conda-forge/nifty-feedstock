@@ -1,6 +1,4 @@
-##
-## START THE BUILD
-##
+set -ex
 
 mkdir -p build
 cd build
@@ -9,9 +7,6 @@ if [[ "${target_platform}" == "osx-64" ]]; then
     export CXXFLAGS="${CXXFLAGS} -D_LIBCPP_DISABLE_AVAILABILITY"
 fi
 
-##
-## Configure
-##
 cmake ${CMAKE_ARGS} .. \
 \
         -DBOOST_ROOT=${PREFIX} \
@@ -24,8 +19,5 @@ cmake ${CMAKE_ARGS} .. \
 \
         -DPython_EXECUTABLE=${PYTHON}
 
-##
-## Compile and install
-##
 make -j${CPU_COUNT}
 make install
