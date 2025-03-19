@@ -5,9 +5,10 @@ if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 cd build
 if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
+REM Do not use ninja since it runs out of heap space...
 cmake .. %CMAKE_ARGS% ^
-         -G Ninja ^
-         -DDCMAKE_VERBOSE_MAKEFILE=ON ^
+         -G "%CMAKE_GENERATOR%" ^
+         -DCMAKE_VERBOSE_MAKEFILE=ON ^
          -DBUILD_NIFTY_PYTHON=ON ^
          -DWITH_HDF5=OFF ^
          -DWITH_Z5=ON ^
