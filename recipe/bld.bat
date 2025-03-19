@@ -1,8 +1,10 @@
+@echo ON
+
 mkdir build
 cd build
 
 cmake .. %CMAKE_ARGS% ^
-         -G "%CMAKE_GENERATOR%" ^
+         -G ninja ^
          -DBOOST_ROOT="%LIBRARY_PREFIX%" ^
          -DBUILD_NIFTY_PYTHON=ON ^
          -DWITH_HDF5=OFF ^
@@ -10,7 +12,6 @@ cmake .. %CMAKE_ARGS% ^
          -DWITH_ZLIB=ON ^
          -DWITH_BLOSC=ON ^
          -DCMAKE_BUILD_TYPE=Release ^
-         -DCMAKE_TRY_COMPILE_CONFIGURATION=Release ^
          -DPython_EXECUTABLE="%PYTHON%"
 
 cmake --build . --target install
