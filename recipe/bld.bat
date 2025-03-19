@@ -1,7 +1,9 @@
 @echo ON
 
 mkdir build
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 cd build
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
 cmake .. %CMAKE_ARGS% ^
          -G ninja ^
@@ -13,5 +15,7 @@ cmake .. %CMAKE_ARGS% ^
          -DWITH_BLOSC=ON ^
          -DCMAKE_BUILD_TYPE=Release ^
          -DPython_EXECUTABLE="%PYTHON%"
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
 cmake --build . --target install
+if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
