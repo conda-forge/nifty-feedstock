@@ -1,0 +1,30 @@
+From 6d85ca16d3c032ff7270598c770fe95c1c137e8e Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Wed, 19 Mar 2025 08:13:18 -0400
+Subject: [PATCH 4/6] Let pybind C++ standard flow from global standard
+
+---
+ src/python/CMakeLists.txt | 7 -------
+ 1 file changed, 7 deletions(-)
+
+diff --git a/src/python/CMakeLists.txt b/src/python/CMakeLists.txt
+index b4096768..414ce630 100644
+--- a/src/python/CMakeLists.txt
++++ b/src/python/CMakeLists.txt
+@@ -7,13 +7,6 @@ include_directories(${xtensor-python_INCLUDE_DIRS})
+ find_package(pybind11 CONFIG REQUIRED)
+ include_directories(${pybind11_INCLUDE_DIRS})
+ 
+-if(MSVC)
+-    set(PYBIND11_CPP_STANDARD /std:c++17)
+-else()
+-    set(PYBIND11_CPP_STANDARD -std=c++17)
+-endif()
+-message(STATUS "Using c++ 17 for pybind")
+-
+ add_subdirectory(test)
+ add_subdirectory(lib)
+ 
+-- 
+2.43.0
+

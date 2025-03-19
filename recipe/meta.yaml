@@ -13,7 +13,9 @@ source:
     - 0001-Prevent-debug-builds-in-windows-to-fix-conda-forge-b.patch
     - 0002-Fix-CIs.patch
     - 0003-Update-CMake-file-to-use-FindPython.patch
-    - one_more.patch
+    - 0004-Let-pybind-C-standard-flow-from-global-standard.patch
+    - 0005-Simplify-flags-for-windows.patch
+    - 0006-Explicitely-link-to-python-libraries-with-pybind.patch
 
 build:
   number: 4

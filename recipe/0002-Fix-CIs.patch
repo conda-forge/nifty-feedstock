@@ -1,7 +1,7 @@
 From 14ec15b5db69d84a37d4c337b49cdca76a73fb81 Mon Sep 17 00:00:00 2001
 From: Mark Harfouche <mark.harfouche@gmail.com>
 Date: Tue, 18 Mar 2025 21:03:52 -0400
-Subject: [PATCH 2/3] Fix CIs
+Subject: [PATCH 2/6] Fix CIs
 
 ---
  .github/workflows/build.yaml    |  4 +---
