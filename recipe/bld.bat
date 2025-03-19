@@ -7,7 +7,6 @@ if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
 cmake .. %CMAKE_ARGS% ^
          -G Ninja ^
-         -DBOOST_ROOT="%LIBRARY_PREFIX%" ^
          -DBUILD_NIFTY_PYTHON=ON ^
          -DWITH_HDF5=OFF ^
          -DWITH_Z5=ON ^

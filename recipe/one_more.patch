@@ -1,22 +1,19 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 1e6985d4..75b67569 100644
+index 1e6985d4..091b66c4 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -50,14 +50,6 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
- find_package(Threads REQUIRED)
+@@ -51,11 +51,7 @@ find_package(Threads REQUIRED)
  
  
--if(MSVC)
+ if(MSVC)
 -    # Disable autolinking on MSVC.
 -    add_definitions(-DBOOST_ALL_NO_LIB)
--    add_definitions(-DNOMINMAX)
+     add_definitions(-DNOMINMAX)
 -    # Make sure we don't use debug libraries.
 -    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
--endif()
--
+ endif()
+ 
  # from externals..
- if(REMOVE_SOME_WARNINGS AND (CMAKE_CXX_COMPILER_ID MATCHES "GNU" OR CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
-     add_definitions(-Wno-attributes)
 diff --git a/src/python/CMakeLists.txt b/src/python/CMakeLists.txt
 index b4096768..414ce630 100644
 --- a/src/python/CMakeLists.txt
