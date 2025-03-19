@@ -8,11 +8,12 @@ source:
   url: https://github.com/DerThorsten/nifty/archive/v{{ version }}.tar.gz
   sha256: 43e6ecfd72076acd08a4049f3fc4698c5e39715caec12f70d47c303c519e1a2d
   patches:
-    # Take from 1.2.2 to 
+    # Take from 1.2.2 to
     # https://github.com/DerThorsten/nifty/pull/150
     - 0001-Prevent-debug-builds-in-windows-to-fix-conda-forge-b.patch
     - 0002-Fix-CIs.patch
     - 0003-Update-CMake-file-to-use-FindPython.patch
+    - one_more.patch
 
 build:
   number: 4
