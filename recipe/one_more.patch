@@ -32,29 +32,4 @@ index b4096768..414ce630 100644
  add_subdirectory(test)
  add_subdirectory(lib)
  
-diff --git a/src/python/lib/CMakeLists.txt b/src/python/lib/CMakeLists.txt
-index 7b6b47fb..9bf49bca 100644
---- a/src/python/lib/CMakeLists.txt
-+++ b/src/python/lib/CMakeLists.txt
-@@ -60,15 +60,16 @@ macro(addPythonModule)
-     #endif()
-     set_target_properties(_${MODULE_NAME}  PROPERTIES PREFIX "")
- 
--    #message(STATUS ********Module: ${MODULE_NAME})
--    #message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
-+    message(STATUS ********Module: ${MODULE_NAME})
-+    message(STATUS ********Libs: ${ADD_PY_MOD_LIBRRARIES})
-+    message(STATUS ********Sources: ${ADD_PY_MOD_SOURCES})
- 
-     # NOTE it's not necessary to link against the python library here
-     # and if we do, this causes seg-faults on mac, so don't do it!
-     # link additional libraries
-     target_link_libraries(_${MODULE_NAME}
--        PUBLIC
--        # ${PYTHON_LIBRARIES}
-+        PRIVATE
-+        ${Python_LIBRARIES}
-         ${ADD_PY_MOD_LIBRRARIES}
-     )
- 
 
