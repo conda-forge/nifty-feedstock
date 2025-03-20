@@ -1,0 +1,30 @@
+From fb501ed844333ae2b1b5bc54b2bab3e741ba5200 Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Wed, 19 Mar 2025 09:46:48 -0400
+Subject: [PATCH 5/6] Simplify flags for windows
+
+---
+ CMakeLists.txt | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1e6985d4..5de87775 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -51,11 +51,9 @@ find_package(Threads REQUIRED)
+ 
+ 
+ if(MSVC)
+-    # Disable autolinking on MSVC.
+-    add_definitions(-DBOOST_ALL_NO_LIB)
++    # Needed for xtensor compatibility, they seem to
++    # define these macros
+     add_definitions(-DNOMINMAX)
+-    # Make sure we don't use debug libraries.
+-    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+ endif()
+ 
+ # from externals..
+-- 
+2.43.0
+

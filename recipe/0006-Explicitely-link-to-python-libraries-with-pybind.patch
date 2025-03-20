@@ -1,0 +1,37 @@
+From d2a9029578d3b8ac16bc7f05afa7e14b6b79fd20 Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Wed, 19 Mar 2025 09:47:23 -0400
+Subject: [PATCH 6/6] Explicitely link to python libraries with pybind
+
+---
+ src/python/lib/CMakeLists.txt | 12 ++++++++++--
+ 1 file changed, 10 insertions(+), 2 deletions(-)
+
+diff --git a/src/python/lib/CMakeLists.txt b/src/python/lib/CMakeLists.txt
+index 7b6b47fb..8b665d9c 100644
+--- a/src/python/lib/CMakeLists.txt
++++ b/src/python/lib/CMakeLists.txt
+@@ -67,10 +67,18 @@ macro(addPythonModule)
+     # and if we do, this causes seg-faults on mac, so don't do it!
+     # link additional libraries
+     target_link_libraries(_${MODULE_NAME}
+-        PUBLIC
+-        # ${PYTHON_LIBRARIES}
++        PRIVATE
+         ${ADD_PY_MOD_LIBRRARIES}
+     )
++    if(MSVC)
++        # Doing this linking for all platforms causes segfaults on mac
++        # and is not necessary on linux
++        # But it avoids linking to the debug libraries in windows....
++        target_link_libraries(_${MODULE_NAME}
++            PRIVATE
++            ${Python_LIBRARIES}
++        )
++    endif()
+ 
+     # create module dir
+     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/${ADD_PY_MOD_NESTED_NAME})
+-- 
+2.43.0
+

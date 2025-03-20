@@ -1,0 +1,26 @@
+From e15c257522b52fe8f3d866ba358a0e93928252b3 Mon Sep 17 00:00:00 2001
+From: Constantin Pape <constantin.pape@informatik.uni-goettingen.de>
+Date: Sun, 2 Mar 2025 13:49:01 +0100
+Subject: [PATCH 1/6] Prevent debug builds in windows to fix conda-forge build
+ issues
+
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 440599a8..5ee6757a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -53,6 +53,8 @@ if(MSVC)
+     # Disable autolinking on MSVC.
+     add_definitions(-DBOOST_ALL_NO_LIB)
+     add_definitions(-DNOMINMAX)
++    # Make sure we don't use debug libraries.
++    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreadedDLL")
+ endif()
+ 
+ # from externals..
+-- 
+2.43.0
+

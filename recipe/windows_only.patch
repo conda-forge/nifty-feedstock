@@ -1,0 +1,24 @@
+diff --git a/src/python/lib/CMakeLists.txt b/src/python/lib/CMakeLists.txt
+index 8b665d9c..88692e02 100644
+--- a/src/python/lib/CMakeLists.txt
++++ b/src/python/lib/CMakeLists.txt
+@@ -68,17 +68,9 @@ macro(addPythonModule)
+     # link additional libraries
+     target_link_libraries(_${MODULE_NAME}
+         PRIVATE
++        ${Python_LIBRARIES}
+         ${ADD_PY_MOD_LIBRRARIES}
+     )
+-    if(MSVC)
+-        # Doing this linking for all platforms causes segfaults on mac
+-        # and is not necessary on linux
+-        # But it avoids linking to the debug libraries in windows....
+-        target_link_libraries(_${MODULE_NAME}
+-            PRIVATE
+-            ${Python_LIBRARIES}
+-        )
+-    endif()
+ 
+     # create module dir
+     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/python/${ADD_PY_MOD_NESTED_NAME})
+
