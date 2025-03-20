@@ -1,0 +1,126 @@
+From 14ec15b5db69d84a37d4c337b49cdca76a73fb81 Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Tue, 18 Mar 2025 21:03:52 -0400
+Subject: [PATCH 2/3] Fix CIs
+
+---
+ .github/workflows/build.yaml    |  4 +---
+ .github/workflows/build_unix.sh |  5 +----
+ .github/workflows/build_win.bat |  8 ++++----
+ .pre-commit-config.yaml         |  1 +
+ environment.yaml                | 25 +++++++++++++++----------
+ 5 files changed, 22 insertions(+), 21 deletions(-)
+ create mode 100644 .pre-commit-config.yaml
+
+diff --git a/.github/workflows/build.yaml b/.github/workflows/build.yaml
+index 1705f123..9c855da5 100644
+--- a/.github/workflows/build.yaml
++++ b/.github/workflows/build.yaml
+@@ -8,14 +8,13 @@ on:
+ 
+ jobs:
+   test:
+-    name: ${{ matrix.os }} ${{ matrix.python-version }}
++    name: ${{ matrix.os }}
+     runs-on: ${{ matrix.os }}
+ 
+     strategy:
+       fail-fast: false
+       matrix:
+         os: [macos-latest, windows-latest, ubuntu-latest]
+-        python-version: [3.11]
+ 
+     steps:
+       - name: Checkout
+@@ -25,7 +24,6 @@ jobs:
+         uses: mamba-org/setup-micromamba@v2
+         with:
+           environment-file: .github/workflows/environment.yaml
+-          python-version: ${{ matrix.python-version }}
+ 
+       # this will set the system compiler;
+       # I don't know how to set the conda compilers for windows
+diff --git a/.github/workflows/build_unix.sh b/.github/workflows/build_unix.sh
+index d7b00671..f69cfa1e 100755
+--- a/.github/workflows/build_unix.sh
++++ b/.github/workflows/build_unix.sh
+@@ -1,6 +1,5 @@
+ #!/bin/bash
+ 
+-export PY_BIN="$CONDA_PREFIX/bin/python"
+ cmake . \
+     -DWITHIN_TRAVIS=ON \
+     -DWITH_QPBO=OFF \
+@@ -13,9 +12,7 @@ cmake . \
+     -DWITH_GUROBI=OFF \
+     -DBUILD_CPP_TEST=OFF \
+     -DCMAKE_PREFIX_PATH="$CONDA_PREFIX" \
+-    -DPython_NumPy_INCLUDE_DIRS=$(python -c "import numpy; print(numpy.get_include())") \
+-    -DPYTHON_EXECUTABLE="$PY_BIN" \
+-    -DCMAKE_CXX_FLAGS="-std=c++17" \
++    -DPython_EXECUTABLE="${CONDA_PREFIX}/bin/python" \
+     -DCMAKE_INSTALL_PREFIX="$CONDA_PREFIX" \
+     -DBUILD_NIFTY_PYTHON=ON
+ make -j 4
+diff --git a/.github/workflows/build_win.bat b/.github/workflows/build_win.bat
+index 095776c4..184a3cb9 100644
+--- a/.github/workflows/build_win.bat
++++ b/.github/workflows/build_win.bat
+@@ -6,10 +6,10 @@ cmake . -G "NMake Makefiles" ^
+     -DWITH_CPLEX=OFF ^
+     -DWITH_GUROBI=OFF ^
+     -DBUILD_CPP_TEST=OFF ^
+-    -DCMAKE_PREFIX_PATH="%CONDA_PREFIX%" ^
+-    -DCMAKE_INSTALL_PREFIX="%CONDA_PREFIX%" ^
+-    -DPython_NumPy_INCLUDE_DIRS=$(python -c "import numpy; print(numpy.get_include())") ^
+-    -DCMAKE_CXX_FLAGS="/std:c++17 /EHsc" ^
++    -DCMAKE_PREFIX_PATH:PATH="%CONDA_PREFIX%" ^
++    -DCMAKE_INSTALL_PREFIX:PATH="%CONDA_PREFIX%" ^
++    -DPython_EXECUTABLE:PATH="%CONDA_PREFIX%\python.exe" ^
++    -DCMAKE_CXX_FLAGS="/EHsc" ^
+     -DBUILD_NIFTY_PYTHON=ON ^
+     -DWITH_HDF5=OFF ^
+     -DWITH_Z5=ON ^
+diff --git a/.pre-commit-config.yaml b/.pre-commit-config.yaml
+new file mode 100644
+index 00000000..4e6a92c4
+--- /dev/null
++++ b/.pre-commit-config.yaml
+@@ -0,0 +1 @@
++repos: []
+diff --git a/environment.yaml b/environment.yaml
+index a60c9a6b..3a4d8922 100644
+--- a/environment.yaml
++++ b/environment.yaml
+@@ -1,13 +1,18 @@
+-name:
+-    nifty-dev
++name: nifty-dev
+ channels:
+-    - conda-forge
++  - conda-forge
+ dependencies:
+-  - boost-cpp>=1.63
+-  - h5py
+-  - nlohmann_json
+-  - scikit-image
+-  - xtensor>=0.21,<0.22
+-  - xtensor-python>=0.24,<0.25
++  - python 3.12
++  - numpy
++  - xtensor >=0.25,<0.26
++  - xtensor-python >=0.27,<0.28
++  - libboost-devel
++  - libvigra
++  # Vigra Numpy is used at link time too
+   - vigra
+-  - z5py
++  - z5py >=2.0.11
++  # build dependencies needed for z5
++  - nlohmann_json
++  - blosc
++  - bzip2
++  - zlib
+-- 
+2.43.0
+
