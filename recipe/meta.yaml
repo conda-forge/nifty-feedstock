@@ -16,6 +16,7 @@ source:
     - 0004-Let-pybind-C-standard-flow-from-global-standard.patch
     - 0005-Simplify-flags-for-windows.patch
     - 0006-Explicitely-link-to-python-libraries-with-pybind.patch
+    - windows_only.patch  # [win]
 
 build:
   number: 4
