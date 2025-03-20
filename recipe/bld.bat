@@ -7,7 +7,7 @@ if %ERRORLEVEL% NEQ 0 exit /b %ERRORLEVEL%
 
 REM Do not use ninja since it runs out of heap space...
 cmake .. %CMAKE_ARGS% ^
-         -G "%CMAKE_GENERATOR%" ^
+         -G "%CMAKE_GEN%" ^
          -DCMAKE_VERBOSE_MAKEFILE=ON ^
          -DBUILD_NIFTY_PYTHON=ON ^
          -DWITH_HDF5=OFF ^
