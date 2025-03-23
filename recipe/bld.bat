@@ -2,7 +2,7 @@ mkdir build
 cd build
 
 cmake .. %CMAKE_ARGS% ^
-         -G Ninja ^
+         -G "%CMAKE_GENERATOR%" ^
          -DBOOST_ROOT="%LIBRARY_PREFIX%" ^
          -DBUILD_NIFTY_PYTHON=ON ^
          -DWITH_HDF5=OFF ^
