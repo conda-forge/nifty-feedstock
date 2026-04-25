@@ -11,7 +11,7 @@ channel_targets:
 cxx_compiler:
 - vs2019
 libboost_devel:
-- '1.88'
+- '1.90'
 libvigra:
 - '1.12'
 numpy:
